@@ -20,6 +20,7 @@ function Multer (options) {
   this.limits = options.limits
   this.preservePath = options.preservePath
   this.fileFilter = options.fileFilter || allowAll
+  this.useRawBody = options.useRawBody || false
 }
 
 Multer.prototype._makeMiddleware = function (fields, fileStrategy) {
@@ -48,6 +49,7 @@ Multer.prototype._makeMiddleware = function (fields, fileStrategy) {
       limits: this.limits,
       preservePath: this.preservePath,
       storage: this.storage,
+      useRawBody: this.useRawBody,
       fileFilter: wrappedFileFilter,
       fileStrategy: fileStrategy
     }
@@ -78,6 +80,7 @@ Multer.prototype.any = function () {
       limits: this.limits,
       preservePath: this.preservePath,
       storage: this.storage,
+      useRawBody: this.useRawBody,
       fileFilter: this.fileFilter,
       fileStrategy: 'ARRAY'
     }
